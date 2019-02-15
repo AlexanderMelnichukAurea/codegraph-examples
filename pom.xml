@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <codegraph-client.version>1.0.5</codegraph-client.version>
+    </properties>
+
     <groupId>com.devfactory.codegraph.client.samples</groupId>
     <artifactId>check-token-expiration</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -21,10 +25,10 @@
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
-                            <file>libs/client-1.0.3.jar</file>
+                            <file>libs/client-${codegraph-client.version}.jar</file>
                             <groupId>com.devfactory.codegraph</groupId>
                             <artifactId>client</artifactId>
-                            <version>1.0.3</version>
+                            <version>${codegraph-client.version}</version>
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
@@ -61,6 +65,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.devfactory.codegraph</groupId>
+            <artifactId>client</artifactId>
+            <version>${codegraph-client.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
@@ -75,12 +85,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.6.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.devfactory.codegraph</groupId>
-            <artifactId>client</artifactId>
-            <version>1.0.3</version>
         </dependency>
 
         <!-- codegraph client dependencies -->

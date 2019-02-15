@@ -1,7 +1,6 @@
 package com.devfactory.codegraph.client.examples;
 
 import com.devfactory.codegraph.client.core.ICodegraphClient;
-import com.devfactory.codegraph.client.core.impl.CodegraphClient;
 import com.devfactory.codegraph.client.exceptions.CodegraphClientException;
 import com.devfactory.codegraph.client.models.Build;
 import com.devfactory.codegraph.client.models.Language;
@@ -20,14 +19,7 @@ public class CheckTokenExpiration {
             return;
         }
 
-        URI baseURI = new URI("http://rest-server.codegraph-dev.devfactory.com/api/v1.0/");
-        ICodegraphClient client1 = new CodegraphClient(baseURI);
-
-        String username = args[0];
-        String password = args[1];
-
-        client1.login(username, password);
-
+        ICodegraphClient client1 = ClientUtil.loginAndGetClient(args[0], args[1]);
         log.info("Token1: {}", client1.getSession().getToken());
 
         Request request = Request.builder()
@@ -52,8 +44,7 @@ public class CheckTokenExpiration {
 
         log.info("{} seconds passed", TIMEOUT_SECONDS);
 
-        ICodegraphClient client2 = new CodegraphClient(baseURI);
-        client2.login("brp", "brp");
+        ICodegraphClient client2 = ClientUtil.loginAndGetClient(args[0], args[1]);
         log.info("New token obtained (token2): {}, Account2: {}", client2.getSession().getToken(),
                 client2.getSession().getAccount());
 
